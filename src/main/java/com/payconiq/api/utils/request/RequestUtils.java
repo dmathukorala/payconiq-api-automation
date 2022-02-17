@@ -2,7 +2,6 @@ package com.payconiq.api.utils.request;
 
 import com.payconiq.api.config.ConfigParams;
 import com.payconiq.api.config.ConfigUtils;
-import com.payconiq.api.constants.RequestIdentifier;
 import com.payconiq.api.dto.request.RequestTemplateDTO;
 import org.json.simple.JSONObject;
 
@@ -10,11 +9,13 @@ import java.util.Map;
 
 public class RequestUtils {
 
-    public static RequestTemplateDTO generateRequestTemplate(RequestIdentifier requestIdentifier) {
+    private RequestUtils() {}
+
+    public static RequestTemplateDTO generateRequestTemplate(String requestIdentifier) {
 
         JSONObject requestTemplate;
         RequestTemplateDTO requestTemplateDTO = new RequestTemplateDTO();
-        String[] identifier = requestIdentifier.toString().split("_");
+        String[] identifier = requestIdentifier.split("_");
         String serviceName = identifier[0];
         String apiName = identifier[1];
 

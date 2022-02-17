@@ -29,7 +29,7 @@ public class BookingSteps extends ServiceBase {
     public CreateBookingRespDTO createBooking(RequestParamsDTO requestParams) {
         CreateBookingRespDTO createBookingRespDTO = null;
         try {
-            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.booking_CreateBooking, requestParams);
+            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.BOOKING_CREATE_BOOKING, requestParams);
 
             createBookingRespDTO = (CreateBookingRespDTO) getResponseDTO(baseResponseDTO.getResponse(), CreateBookingRespDTO.class);
             createBookingRespDTO.setResponse(baseResponseDTO.getResponse());
@@ -45,7 +45,7 @@ public class BookingSteps extends ServiceBase {
     public GetBookingRespDTO updateBooking(RequestParamsDTO requestParams) {
         GetBookingRespDTO bookingRespDTO = null;
         try {
-            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.booking_UpdateBooking, requestParams);
+            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.BOOKING_UPDATE_BOOKING, requestParams);
 
             bookingRespDTO = (GetBookingRespDTO) getResponseDTO(baseResponseDTO.getResponse(), GetBookingRespDTO.class);
             bookingRespDTO.setResponse(baseResponseDTO.getResponse());
@@ -61,7 +61,7 @@ public class BookingSteps extends ServiceBase {
     public GetBookingRespDTO getBookingById(RequestParamsDTO requestParams) {
         GetBookingRespDTO getBookingRespDTO = null;
         try {
-            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.booking_GetBooking, requestParams);
+            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.BOOKING_GET_BOOKING, requestParams);
 
             getBookingRespDTO = (GetBookingRespDTO) getResponseDTO(baseResponseDTO.getResponse(), GetBookingRespDTO.class);
             getBookingRespDTO.setResponse(baseResponseDTO.getResponse());
@@ -77,7 +77,7 @@ public class BookingSteps extends ServiceBase {
     public GetBookingIdsResponseDTO[] getAllBookingIds(RequestParamsDTO requestParams) {
         GetBookingIdsResponseDTO[] getBookingIdsDTO = null;
         try {
-            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.booking_GetBookingIds, requestParams);
+            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.BOOKING_GET_BOOKING_IDS, requestParams);
 
             getBookingIdsDTO = (GetBookingIdsResponseDTO[]) getResponseDTO(baseResponseDTO.getResponse(), GetBookingIdsResponseDTO[].class);
             getBookingIdsDTO[0].setResponse(baseResponseDTO.getResponse());
@@ -93,7 +93,7 @@ public class BookingSteps extends ServiceBase {
     public GetBookingRespDTO updatePartialBooking(RequestParamsDTO requestParams) {
         GetBookingRespDTO bookingRespDTO = null;
         try {
-            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.booking_PartialUpdateBooking, requestParams);
+            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.BOOKING_PARTIAL_UPDATE_BOOKING, requestParams);
 
             bookingRespDTO = (GetBookingRespDTO) getResponseDTO(baseResponseDTO.getResponse(), GetBookingRespDTO.class);
             bookingRespDTO.setResponse(baseResponseDTO.getResponse());
@@ -109,7 +109,7 @@ public class BookingSteps extends ServiceBase {
     public BaseResponseDTO deleteBooking(RequestParamsDTO requestParams) {
         BaseResponseDTO baseResponseDTO = null;
         try {
-            baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.booking_PartialUpdateBooking, requestParams);
+            baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.BOOKING_DELETE_BOOKING, requestParams);
 
         } catch (Exception e) {
             log.error(e);

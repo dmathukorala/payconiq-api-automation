@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class FormParamsProvider {
 
+    private FormParamsProvider() {}
+
     public static Map<String, String> constructFormParams(RequestTemplateDTO requestTemplate, Map<String, String> updateFormParams, List<String> removeFormParams) {
 
         Map<String, String> templateFormParams = requestTemplate.getFormParams()!=null ? requestTemplate.getFormParams() : new HashMap<>();

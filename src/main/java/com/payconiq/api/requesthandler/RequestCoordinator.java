@@ -1,6 +1,5 @@
 package com.payconiq.api.requesthandler;
 
-import com.payconiq.api.constants.RequestIdentifier;
 import com.payconiq.api.dto.request.RequestParamsDTO;
 import com.payconiq.api.dto.request.RequestTemplateDTO;
 import com.payconiq.api.dto.response.base.BaseResponseDTO;
@@ -13,10 +12,6 @@ import java.util.Map;
 
 public class RequestCoordinator {
 
-    private Response response;
-    private BaseResponseDTO baseResponse;
-    private RequestBuilder requestBuilder;
-    private RequestTemplateDTO requestTemplate;
     private String baseURI;
     private String relativeUri;
     private Map<String, String> headers;
@@ -28,15 +23,14 @@ public class RequestCoordinator {
 
     /**
      * Construct the payload and send request
+     *
      * @param requestIdentifier
      * @param requestParams
      * @return
      */
-    public BaseResponseDTO sendRequest(RequestIdentifier requestIdentifier, RequestParamsDTO requestParams) {
+    public BaseResponseDTO sendRequest(String requestIdentifier, RequestParamsDTO requestParams) {
 
-        baseResponse = new BaseResponseDTO();
-        requestBuilder = new RequestBuilder();
-        requestTemplate = RequestUtils.generateRequestTemplate(requestIdentifier);
+        RequestTemplateDTO requestTemplate = RequestUtils.generateRequestTemplate(requestIdentifier);
         baseURI = requestTemplate.getBaseUrl();
         relativeUri = URLProvider.constructURL(requestTemplate, requestParams.getUpdatePathParams(), requestParams.getRemovePathParams());
         headers = HeaderProvider.constructHeaders(requestTemplate, requestParams.getUpdateHeaders(), requestParams.getRemoveHeaders());
@@ -52,33 +46,15 @@ public class RequestCoordinator {
         else if (requestTemplate.getPayload() != null)
             requestPayload = requestTemplate.getPayload().toString();
 
-        requestBuilder.setUrl(baseURI + relativeUri);
+        RequestHandler buildRequest = setupRequestHandler(requestParams);
 
-        if (headers != null && !headers.isEmpty())
-            requestBuilder.setHeaders(headers);
+        return sendRequest(requestTemplate, buildRequest);
+    }
 
-        if (requestPayload != null && !requestPayload.isEmpty())
-            requestBuilder.setPayload(requestPayload);
+    private BaseResponseDTO sendRequest(RequestTemplateDTO requestTemplate, RequestHandler buildRequest) {
 
-        if (queryParams != null && !queryParams.isEmpty())
-            requestBuilder.setQueryParams(queryParams);
-
-        if (formParams != null && !formParams.isEmpty())
-            requestBuilder.setFormParams(formParams);
-
-        if(multiPartObject !=null && multiPartControlName !=null){
-            requestBuilder.setMultiPartControlName(requestParams.getUpdateMultiPartControlName());
-            requestBuilder.setMultiPartObject(requestParams.getUpdateMultiPartObject());
-        }
-
-        if(requestParams.getUpdateEncoder() != null && requestParams.getUpdateEncoderContentType() != null){
-            requestBuilder.setUpdateEncoder(requestParams.getUpdateEncoder());
-            requestBuilder.setUpdateEncoderContentType(requestParams.getUpdateEncoderContentType());
-        }
-
-        requestBuilder.setUrlEncodingEnabled(requestParams.isUrlEncodingEnabled());
-
-        RequestHandler buildRequest = requestBuilder.build();
+        BaseResponseDTO baseResponse = new BaseResponseDTO();
+        Response response;
 
         switch (requestTemplate.getMethod()) {
             case "GET":
@@ -103,5 +79,40 @@ public class RequestCoordinator {
         baseResponse.setResponse(response);
 
         return baseResponse;
+    }
+
+    private RequestHandler setupRequestHandler(RequestParamsDTO requestParams) {
+
+        RequestBuilder requestBuilder;
+
+        requestBuilder = new RequestBuilder();
+
+        requestBuilder.setUrl(baseURI + relativeUri);
+
+        if (headers != null && !headers.isEmpty())
+            requestBuilder.setHeaders(headers);
+
+        if (requestPayload != null && !requestPayload.isEmpty())
+            requestBuilder.setPayload(requestPayload);
+
+        if (queryParams != null && !queryParams.isEmpty())
+            requestBuilder.setQueryParams(queryParams);
+
+        if (formParams != null && !formParams.isEmpty())
+            requestBuilder.setFormParams(formParams);
+
+        if (multiPartObject != null && multiPartControlName != null) {
+            requestBuilder.setMultiPartControlName(requestParams.getUpdateMultiPartControlName());
+            requestBuilder.setMultiPartObject(requestParams.getUpdateMultiPartObject());
+        }
+
+        if (requestParams.getUpdateEncoder() != null && requestParams.getUpdateEncoderContentType() != null) {
+            requestBuilder.setUpdateEncoder(requestParams.getUpdateEncoder());
+            requestBuilder.setUpdateEncoderContentType(requestParams.getUpdateEncoderContentType());
+        }
+
+        requestBuilder.setUrlEncodingEnabled(requestParams.isUrlEncodingEnabled());
+
+        return requestBuilder.build();
     }
 }

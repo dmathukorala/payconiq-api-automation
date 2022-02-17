@@ -12,7 +12,7 @@ import java.util.Objects;
 public class BaseResponseDTO {
 
     @Getter
-    private static Response response;
+    private Response response;
     @Getter
     @Setter
     private int statusCode;
@@ -26,9 +26,7 @@ public class BaseResponseDTO {
     public void setResponse(Response response) {
         Log log = LogFactory.getLog(BaseResponseDTO.class);
 
-        BaseResponseDTO.response = response;
-        if (response == null)
-            throw new RuntimeException("Response from server is null");
+        this.response = response;
         this.statusCode = response.statusCode();
         this.contentType = response.contentType();
         if (response.getBody() != null)

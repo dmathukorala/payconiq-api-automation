@@ -4,6 +4,9 @@ import com.payconiq.api.dto.request.RequestTemplateDTO;
 
 public class MultipartDataProvider {
 
+    private MultipartDataProvider() {
+    }
+
     public static String constructMultipartControlName(RequestTemplateDTO requestTemplate, String updateMultipartControlName, String removeMultipartControlName) {
 
         String multipartControlName = requestTemplate.getMultiPartControlName() != null ? requestTemplate.getMultiPartControlName() : null;
@@ -12,8 +15,8 @@ public class MultipartDataProvider {
             if (updateMultipartControlName != null) {
                 multipartControlName = updateMultipartControlName;
             }
-            if (removeMultipartControlName != null) {
-                multipartControlName.replace(removeMultipartControlName, "");
+            if (multipartControlName != null && removeMultipartControlName != null) {
+                multipartControlName = multipartControlName.replace(removeMultipartControlName, "");
             }
 
         } catch (Exception e) {
@@ -31,8 +34,7 @@ public class MultipartDataProvider {
             if (updateMultipartObject != null) {
                 multiPartObject = updateMultipartObject;
             }
-            if (removeMultipartObject != null) {
-                if (multiPartObject.equals(removeMultipartObject)) ;
+            if (multiPartObject != null && removeMultipartObject != null && multiPartObject.equals(removeMultipartObject)) {
                 multiPartObject = null;
             }
 

@@ -2,6 +2,8 @@ package com.payconiq.api.constants;
 
 public class BookingParams {
 
+    private BookingParams(){}
+
     public static final String FIRST_NAME = "firstname";
     public static final String LAST_NAME = "lastname";
     public static final String CHECK_IN = "checkin";

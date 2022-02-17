@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class URLProvider {
 
+    private URLProvider() {}
 
     public static String constructURL(RequestTemplateDTO requestTemplate, Map<String, String> addPathParams, List<String> removePathParams) {
 

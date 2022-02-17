@@ -26,7 +26,7 @@ public class AuthSteps extends ServiceBase {
     public CreateTokenDTO createAuthToken(RequestParamsDTO requestParams) {
         CreateTokenDTO createTokenDTO = null;
         try {
-            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.auth_CreateToken, requestParams);
+            BaseResponseDTO baseResponseDTO = serviceManager.sendRequest(RequestIdentifier.AUTH_CREATE_TOKEN, requestParams);
 
             createTokenDTO = (CreateTokenDTO) getResponseDTO(baseResponseDTO.getResponse(), CreateTokenDTO.class);
             createTokenDTO.setResponse(baseResponseDTO.getResponse());

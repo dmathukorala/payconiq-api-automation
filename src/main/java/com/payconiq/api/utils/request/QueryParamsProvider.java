@@ -8,6 +8,8 @@ import java.util.Map;
 
 public class QueryParamsProvider {
 
+    private QueryParamsProvider() {}
+
     public static Map<String, String> constructQueryParams(RequestTemplateDTO requestTemplate, Map<String, String> updateQueryParams, List<String> removeQueryParams) {
 
         Map<String, String> templateQueryParams = requestTemplate.getQueryParams()!=null ? requestTemplate.getQueryParams() : new HashMap<>();

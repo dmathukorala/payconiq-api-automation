@@ -10,7 +10,6 @@ public class ConfigUtils {
     private Properties configFile;
     private static ConfigUtils instance;
     private static String path;
-    private static Properties properties;
 
     public ConfigUtils() {
 
@@ -38,16 +37,12 @@ public class ConfigUtils {
         return instance.getValue(key);
     }
 
-    public static String getProperty(String filePath, String fileName, String key) {
-        FileInputStream fis = null;
+    public static String getProperty(String filePath, String fileName, String key) throws IOException {
 
-        properties = new Properties();
-
-        try {
-            File envFile = new File(filePath, fileName);
-            fis = new FileInputStream(envFile);
+        Properties properties = new Properties();
+        File envFile = new File(filePath, fileName);
+        try(FileInputStream fis = new FileInputStream(envFile)){
             properties.load(fis);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

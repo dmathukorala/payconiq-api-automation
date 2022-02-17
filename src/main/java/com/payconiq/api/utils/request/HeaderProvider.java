@@ -7,6 +7,8 @@ import java.util.Map;
 
 public class HeaderProvider {
 
+    private HeaderProvider() {}
+
     public static Map<String, String> constructHeaders(RequestTemplateDTO requestTemplate, Map<String, String> updateHeadersValues, List<String> removeHeaders) {
 
         Map<String, String> templateHeaders = requestTemplate.getHeaders();

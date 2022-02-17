@@ -3,14 +3,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.jayway.jsonpath.DocumentContext;
 import com.jayway.jsonpath.JsonPath;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public abstract class FilterRequestResponse {
     private static Log log = LogFactory.getLog(FilterRequestResponse.class);
 
-    public FilterRequestResponse() {
-    }
+    protected FilterRequestResponse() {}
 
     /**
      * Return elements from given jsonpath. Please follow jsonpath syntax when sending values for jasonroot
@@ -93,7 +92,7 @@ public abstract class FilterRequestResponse {
      * @param deleteElements
      * @return
      */
-    public static String removeMultipleJsonElements(String payload, ArrayList<String> deleteElements) {
+    public static String removeMultipleJsonElements(String payload, List<String> deleteElements) {
         String constructPayoad = "";
         DocumentContext updatedJson = null;
         try {
