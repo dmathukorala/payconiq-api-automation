@@ -74,4 +74,30 @@ public class UpdateBookingTest extends TestBase {
 
     }
 
+    @Test
+    @DisplayName("Update Booking Without Auth Token")
+    @Description("Update existing booking Without Auth Token parameter")
+    public void updateBookingWithoutTokenTest(){
+        RequestParamsDTO requestParams = new RequestParamsDTO();
+        Map<String, Object> updateBookingPayload = new HashMap<>();
+        Map<String, String> pathParams = new HashMap<>();
+
+        String firstName = RandomStringUtils.randomAlphabetic(8);
+        String lastName = RandomStringUtils.randomAlphabetic(8);
+
+        //construct payload
+        updateBookingPayload.put(FIRST_NAME, firstName);
+        updateBookingPayload.put(LAST_NAME, lastName);
+        pathParams.put(BOOKING_ID_PATH_PARAMS, createBookingRespDTO.getBookingid().toString());
+
+        requestParams.setUpdatePayload(updateBookingPayload);
+        requestParams.setUpdatePathParams(pathParams);
+
+        GetBookingRespDTO responseDTO = bookingSteps.updateBooking(requestParams);
+
+        Assert.assertEquals(403, responseDTO.getStatusCode());
+
+
+    }
+
 }

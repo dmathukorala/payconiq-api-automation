@@ -57,7 +57,7 @@ public class CreateBookingTest extends TestBase {
 
         CreateBookingRespDTO responseDTO = bookingSteps.createBooking(requestParams);
 
-        Assert.assertEquals(500, responseDTO.getStatusCode());
+        Assert.assertEquals(400, responseDTO.getStatusCode());
     }
 
 }
