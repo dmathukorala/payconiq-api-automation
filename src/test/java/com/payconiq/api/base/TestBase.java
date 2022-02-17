@@ -13,8 +13,6 @@ import java.time.format.DateTimeFormatter;
 
 public class TestBase {
 
-    public static final String USER_DATA = "UserData";
-    public static final String TEST_DATA = "TestData";
     protected static String environment;
     protected static String environmentConfigPath;
     private static String templateBodyPath;
