@@ -1,0 +1,14 @@
+{
+  "baseUrl": "booking.host",
+  "relativeUrl": "/booking/{bookingId}",
+  "method": "PATCH",
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  },
+  "payload": {
+    "firstname" : "Jim",
+    "lastname" : "Brown"
+  }
+}

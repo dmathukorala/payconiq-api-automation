@@ -78,7 +78,7 @@ public class RequestHandler {
             case HttpMethod.DELETE:
                 res = requestSpecification.delete(this.url);
                 break;
-            case "PATCH":
+            case HttpMethod.PATCH:
                 res = requestSpecification.patch(this.url);
                 break;
             default:
@@ -107,7 +107,7 @@ public class RequestHandler {
      * @return response
      */
     public Response patchResponse() {
-        return httpRequests("PATCH");
+        return httpRequests(HttpMethod.PATCH);
     }
 
     /**

@@ -33,8 +33,8 @@ public class GetBookingIdsTest extends TestBase {
         //construct payload
         createBookingPayload.put(FIRST_NAME, RandomStringUtils.randomAlphabetic(8));
         createBookingPayload.put(LAST_NAME, RandomStringUtils.randomAlphabetic(8));
-        createBookingPayload.put(BOOKING_DATES_CHECKIN, dtf.format(now));
-        createBookingPayload.put(BOOKING_DATES_CHECKOUT, dtf.format(now.plusDays(7)));
+        createBookingPayload.put(BOOKING_DATES_CHECKIN, dtf.format(now.minusDays(3)));
+        createBookingPayload.put(BOOKING_DATES_CHECKOUT, dtf.format(now.plusDays(3)));
         requestParams.setUpdatePayload(createBookingPayload);
         createBookingRespDTO = bookingSteps.createBooking(requestParams);
     }
