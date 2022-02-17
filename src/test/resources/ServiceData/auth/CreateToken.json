@@ -1,0 +1,14 @@
+{
+  "baseUrl": "booking.host",
+  "relativeUrl": "/auth",
+  "method": "POST",
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  },
+  "payload": {
+    "username" : "admin",
+    "password" : "password123"
+  }
+}

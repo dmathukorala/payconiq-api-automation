@@ -1,0 +1,10 @@
+{
+  "baseUrl": "booking.host",
+  "relativeUrl": "/booking/{bookingId}",
+  "method": "DELETE",
+  "status": 200,
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  }
+}
